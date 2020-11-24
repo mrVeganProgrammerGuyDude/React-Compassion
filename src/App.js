@@ -9,11 +9,11 @@ const App = () => {
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState(''); // This updates every time the user puts any letters in
-  const [query, setQuery] = useState('chicken'); //this is designed to only run when the submit button is pressed 
+  const [query, setQuery] = useState('banana'); //this is designed to only run when the submit button is pressed 
 
-  useEffect(() => {
+  useEffect(() => { // This is a built in function in React that will run automatically when a condition is met.
     getRecipes();
-  }, [query]) // this will only run when "query" is updated
+  }, [query]) // this will change useEffect so it will only run when "query" is updated or changed. Leaving this empty will make it run only when the page loads
 
 
 
@@ -24,33 +24,33 @@ const App = () => {
     console.log(data.hits);
   }
 
-const updateSearch = e => {
-  setSearch(e.target.value);
-  console.log(search);
-}
+  const updateSearch = e => {
+    setSearch(e.target.value);
+    console.log(search);
+  }
 
-const getSearch = e => {
-  e.preventDefault(); //This stops the automatic page refresh
-  setQuery(search);
-  setSearch('');
-}
+  const getSearch = e => {
+    e.preventDefault(); //This stops the automatic page refresh
+    setQuery(search);
+    setSearch('');
+  }
 
   return (
     <div className="App">
-      <form onSubmit={getSearch} className="search-form"> 
-        <input type="text" className="search-bar" value={search} onChange={updateSearch}/>
+      <form onSubmit={getSearch} className="search-form">
+        <input type="text" className="search-bar" value={search} onChange={updateSearch} />
         <button type="submit" className="search-button">Search button BABY</button>
       </form>
       <div className="recipes">
-      {recipes.map(recipe => (
-        <Recipe 
-        key={recipe.recipe.label}
-        title={recipe.recipe.label} 
-        calories={recipe.recipe.calories} 
-        image={recipe.recipe.image}
-        ingredients= {recipe.recipe.ingredients}
-        />
-      ))}
+        {recipes.map(recipe => (
+          <Recipe
+            key={recipe.recipe.label}
+            title={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            ingredients={recipe.recipe.ingredients}
+          />
+        ))}
       </div>
     </div>
   );
