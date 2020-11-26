@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Recipe from './Recipe';
+import React, { useEffect, useState } from 'react'; // This is for the recipe search
+import Recipe from './Recipe'; // This is for the recipe search
 import './App.css';
 import LoginButton from './LoginButton';
+import { Route, Switch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { NavBar, Footer, Loading } from "./components";
+import { Home, Profile, ExternalApi } from "./views";
+
+
+
 
 const App = () => {
 
